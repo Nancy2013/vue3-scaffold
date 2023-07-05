@@ -1,18 +1,12 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from './../views/HomeView.vue'
+import Home from './../views/Home.vue'
 
-const context:any = import.meta.glob('./routers/*.ts');
-console.log('--context--',context);
-
-let routes:any=[];
-Object.keys(context).forEach(async (key:string)=>{
-  // const fileName=key.replace(/(\.\/routers\/|\.ts)/g, '');  
-  const file=await context[key]()
-  const router=file.default;    
-  routes=routes.concat(router);
-},[]);
-
-console.log('----routes--',routes);
+const context:any = import.meta.globEager("./routers/*.ts");
+const childrenRoutes = Object.keys(context).reduce((rs, key) => {
+  const router:any=context[key].default;
+  rs.push(...router);
+  return rs;
+}, []);
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -20,8 +14,8 @@ const router = createRouter({
     {
       path: '/',
       name: 'home',
-      component: HomeView,
-      children:routes,
+      component: Home,
+      children:childrenRoutes,
     },
   ]
 })
