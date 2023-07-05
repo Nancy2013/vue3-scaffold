@@ -5,5 +5,17 @@
 </template>
 
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import { onMounted } from 'vue'
+import service from '@/service'
+onMounted(()=>{
+  console.log('----onMounted---',service);
+  getAddressTree();
+});
+const getAddressTree=()=>{
+  const {getAddressTree}=service.securityAlarmReq;
+  getAddressTree().then((res:any)=>{
+    console.log('----getAddressTree----',res);
+    
+  });
+}
 </script>
