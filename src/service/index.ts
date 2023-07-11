@@ -1,4 +1,4 @@
-const context:any = import.meta.globEager("./apis/*.ts");
+const context:any = import.meta.glob("./apis/*.ts",{ eager: true });
 const apisList:any=Object.keys(context).reduce((apis:any,key:any) => {
   const name = key.replace(/(^\.\/apis\/|\.ts$)/g, '');
   const api = context[key].default;
