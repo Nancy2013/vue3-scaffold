@@ -1,5 +1,6 @@
 <template>
   <main>
+    <a-button type="primary">Primary Button</a-button>
     <router-view></router-view>
   </main>
 </template>
