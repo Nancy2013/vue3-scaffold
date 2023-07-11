@@ -1,4 +1,4 @@
-const About=() => import('./../../views/About.vue');
+const About=() => import('viewsPath/About.vue');
 
 const router = [
   {

@@ -1,4 +1,4 @@
-const portal=() => import('./../../views/Portal.vue');
+const portal=() => import('viewsPath/Portal.vue');
 
 const router = [
   {

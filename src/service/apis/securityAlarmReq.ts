@@ -1,4 +1,4 @@
-import request from "@/utils/axios";
+import request from "utilsPath/axios";
 
 const formatData=(url:string,method:string,params:any)=>{
     const data={
