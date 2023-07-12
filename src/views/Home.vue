@@ -10,7 +10,7 @@ import { onMounted } from 'vue'
 import service from '@/service'
 import { message } from 'ant-design-vue';
 onMounted(()=>{
-  message.error('success');
+   message.info('This is a normal message',0);
   getAddressTree();
 });
 const getAddressTree=()=>{
