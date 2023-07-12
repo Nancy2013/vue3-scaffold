@@ -20,6 +20,6 @@ header {
   max-height: 100vh;
 }
 .wrapper{
-  background-color: @theme-color;
+  background-color: @primary-color;
 }
 </style>

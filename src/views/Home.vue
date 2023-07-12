@@ -8,8 +8,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import service from '@/service'
+import { message } from 'ant-design-vue';
 onMounted(()=>{
-  console.log('----onMounted---',service);
+  message.error('success');
   getAddressTree();
 });
 const getAddressTree=()=>{
