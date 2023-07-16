@@ -5,6 +5,7 @@ import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
 import vueJsx from "@vitejs/plugin-vue-jsx";
 import { svgModule } from './config/svgModule'
+import alias from './config/alias';
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -21,13 +22,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url)),
-      'routerPath': fileURLToPath(new URL('./src/router', import.meta.url)),
-      'viewsPath': fileURLToPath(new URL('./src/views', import.meta.url)),
-      'storePath': fileURLToPath(new URL('./src/store', import.meta.url)),
-      'utilsPath': fileURLToPath(new URL('./src/utils', import.meta.url)),
-      'servicePath': fileURLToPath(new URL('./src/service', import.meta.url)),
-      'stylesPath': fileURLToPath(new URL('./src/assets/styles', import.meta.url)),
+      ...alias,
     },
   },
   css:{
