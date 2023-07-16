@@ -2,7 +2,7 @@
   <main>
     <a-button type="primary">Primary Button</a-button>
     <a-switch v-model:checked="checked" />
-     <config-icon color="#f00" width="16px" height="16px" name="table" class="svgClass" />
+     <config-icon color="#f00" width="250px" height="250px" name="certification" class="svgClass" />
     <router-view></router-view>
   </main>
 </template>
@@ -23,3 +23,10 @@ const getAddressTree=()=>{
   });
 }
 </script>
+
+<style lang="less" scoped>
+.svgClass{
+  color: @primary-color!important;
+  margin: 0;
+}
+</style>

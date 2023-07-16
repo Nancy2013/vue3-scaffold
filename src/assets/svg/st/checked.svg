@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="23px" height="23px" viewBox="0 0 23 23" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>编组 2备份 2</title>
+    <defs>
+        <linearGradient x1="100%" y1="50%" x2="0.42340472%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#ADE295" offset="0%"></stop>
+            <stop stop-color="#00A76D" offset="100%"></stop>
+        </linearGradient>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-2">
+            <stop stop-color="#FFFFFF" offset="0%"></stop>
+            <stop stop-color="#FFFFFF" stop-opacity="0.647863855" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="页面-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="码量授权" transform="translate(-28.000000, -517.000000)">
+            <g id="编组-2备份-2" transform="translate(28.000000, 517.000000)">
+                <circle id="椭圆形" fill="url(#linearGradient-1)" cx="11.5" cy="11.5" r="11.5"></circle>
+                <path d="M10.2915718,14.0603911 L16.8240284,7.55899101 C17.1466092,7.23791209 17.6681021,7.23791209 17.9907072,7.55899101 L18.5934993,8.15894881 C18.749436,8.31413454 18.837058,8.52496522 18.837058,8.7449772 C18.837058,8.96498918 18.749436,9.17581987 18.5934993,9.33102982 L10.8899307,16.9982608 C10.8503712,17.0377234 10.8070326,17.0730194 10.760472,17.103761 C10.432392,17.331525 9.98829826,17.2921592 9.70534957,17.0102765 L5.84799351,13.171065 C5.69203258,13.0158792 5.60441055,12.8049517 5.60441055,12.5850366 C5.60441055,12.3650246 5.69203258,12.1541939 5.84799351,11.998984 L6.45078564,11.3990504 C6.77336652,11.0778746 7.29485935,11.0778746 7.61746446,11.3990504 L10.2915718,14.0603911 Z" id="Fill-1" fill="url(#linearGradient-2)"></path>
+            </g>
+        </g>
+    </g>
+</svg>
