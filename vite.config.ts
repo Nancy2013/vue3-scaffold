@@ -3,6 +3,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import Components from 'unplugin-vue-components/vite'
 import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers'
+import vueJsx from "@vitejs/plugin-vue-jsx";
+import { svgModule } from './config/svgModule'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
@@ -14,6 +16,8 @@ export default defineConfig({
         }),
       ],
     }),
+    vueJsx(),
+    svgModule("./src/assets/svg/"),
   ],
   resolve: {
     alias: {

@@ -1,6 +1,8 @@
 <template>
   <main>
     <a-button type="primary">Primary Button</a-button>
+    <a-switch v-model:checked="checked" />
+     <config-icon color="#f00" width="16px" height="16px" name="table" class="svgClass" />
     <router-view></router-view>
   </main>
 </template>
@@ -8,9 +10,9 @@
 <script setup lang="ts">
 import { onMounted } from 'vue'
 import service from '@/service'
-import { message } from 'ant-design-vue';
+import { ref } from 'vue';
+const checked = ref<boolean>(false);
 onMounted(()=>{
-   message.info('This is a normal message',0);
   getAddressTree();
 });
 const getAddressTree=()=>{

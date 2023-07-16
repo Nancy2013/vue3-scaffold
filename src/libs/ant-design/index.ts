@@ -1,8 +1,10 @@
-import {Button,message,Alert,Modal} from 'ant-design-vue';
-
+import {Button,Modal} from 'ant-design-vue';
+const components = [
+    Button,
+    Modal,
+];
 export default (app:any)=>{
-    app.use(Button);
-    app.use(message);
-    app.use(Alert);
-    app.use(Modal);
+    components.forEach(component => {
+        app.component(component.name, component);
+    })
 }
