@@ -1,4 +1,4 @@
-const context:any = import.meta.glob(["./ant-design/*.ts","./fc/*.ts"],{ eager: true });
+const context:any = import.meta.glob("./**/*.ts",{ eager: true });
 const libs:any=Object.keys(context).reduce((lib:any,key:any) => {
   lib.push(context[key].default);
   return lib;
