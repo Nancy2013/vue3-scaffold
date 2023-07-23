@@ -1,5 +1,5 @@
-import { defineComponent, reactive, toRefs, onMounted } from "vue";
-import { Swiper, SwiperSlide } from 'swiper/vue';
+import { defineComponent, reactive,ref, toRefs, onMounted } from "vue";
+import { Swiper, SwiperSlide,useSwiper } from 'swiper/vue';
 import { Autoplay,Navigation } from 'swiper/modules'
 import 'swiper/css'; // Import Swiper styles
 import 'swiper/css/navigation';
@@ -10,7 +10,7 @@ export default defineComponent({
     SwiperSlide,
   },
   setup() {
-    
+    const mySwiper=ref();
     const state = reactive({
         slides:[
             {
@@ -44,8 +44,13 @@ export default defineComponent({
             prevEl: '.swiper-button-prev',
           },
     });
+    onMounted(()=>{
+        console.log('----onMounted----',mySwiper);
+        
+    });
     const onSwiper = (swiper:any) => {
         console.log(swiper);
+        mySwiper.value=swiper
       };
       const onSlideChange = () => {
         console.log('slide change');
@@ -57,12 +62,13 @@ export default defineComponent({
     const clickSwiper=(swiper:any)=>{
         const {clickedIndex}=swiper
         console.log('-----clickSwiper--clickedIndex-',clickedIndex);
-        
     }
     const clickSlide=(item:any)=>{
         console.log('---clickSlide---',item);
     }
-    onMounted(() => {});
+    const slideTo=()=>{
+        mySwiper.value.slideTo(2);
+    }
     return {
       ...toRefs(state),
       onSwiper,
@@ -70,6 +76,7 @@ export default defineComponent({
       slideChangeTransitionEnd,
       clickSwiper,
       clickSlide,
+      slideTo,
     };
   },
 });

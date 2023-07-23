@@ -1,22 +1,23 @@
 <template>
-  <div class="swiper" ref='swiper'>
+  <div class="swiper">
     <swiper
     :modules="modules"
-    :slides-per-view="3"
-    :space-between="50"
+    :slides-per-view="2"
+    :space-between="10"
     :speed="1200"
     direction='vertical'
-    loop
     :navigation="navigation"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
     @slideChangeTransitionEnd='slideChangeTransitionEnd'
+    @click='clickSwiper'
   >
     <swiper-slide @click="clickSlide(item)" v-for="item in slides" :key="item">{{item.name}}</swiper-slide>
   </swiper>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
   </div>
+  <a-button type="primary" @click="slideTo">跳转</a-button>
 </template>
 <script lang="ts">
 import Index from './index'
