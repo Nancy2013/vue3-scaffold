@@ -1,0 +1,25 @@
+.swiper{
+    height: 500px;
+    width: 300px;
+    position: relative;
+    :deep(.swiper-slide){
+        width: 300px;
+        height: 300px !important;
+        display:  flex;
+        align-items: center;
+        justify-content: center;
+        background: #f00;
+    }
+    .swiper-button-prev, .swiper-button-next{
+        left: 50%;
+        margin: 0;
+    }
+    .swiper-button-prev{
+        top:0;
+        transform: translate(0,0) rotate(90deg);
+    }
+    .swiper-button-next{
+        top:100%;
+        transform: translate(0,-100%) rotate(90deg);
+    }
+}

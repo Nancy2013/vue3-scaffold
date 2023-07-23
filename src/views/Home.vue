@@ -2,7 +2,6 @@
   <main>
     <a-button type="primary">Primary Button</a-button>
     <a-switch v-model:checked="checked" />
-     <config-icon color="#f00" width="250px" height="250px" name="certification" class="svgClass" />
     <router-view></router-view>
   </main>
 </template>
