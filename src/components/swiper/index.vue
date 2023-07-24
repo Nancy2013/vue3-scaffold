@@ -11,6 +11,7 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
     @slideChangeTransitionEnd='slideChangeTransitionEnd'
+    @snapGridLengthChange='snapGridLengthChange'
     @click='clickSwiper'
   >
     <swiper-slide @click="clickSlide(item)" v-for="item in slides" :key="item">{{item.name}}</swiper-slide>
