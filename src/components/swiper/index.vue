@@ -7,6 +7,7 @@
     :speed="1200"
     direction='vertical'
     :navigation="navigation"
+    :centeredSlides="true"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
     @slideChangeTransitionEnd='slideChangeTransitionEnd'
