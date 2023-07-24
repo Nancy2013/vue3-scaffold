@@ -53,7 +53,7 @@ export default defineComponent({
         mySwiper.value=swiper
       };
     const snapGridLengthChange== () => {
-        mySwiper.snapGrid = mySwiper.slice(0);
+        mySwiper.snapGrid = mySwiper.snapGrid.slice(0);
      };
       const onSlideChange = () => {
         console.log('slide change');
