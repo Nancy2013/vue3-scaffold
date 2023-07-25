@@ -1,7 +1,7 @@
 <template>
   <div class="portal">
     <h1>This is an portal page</h1>
-    <FCSwiper/>
+    <FCSwiper :actived='4'/>
   </div>
 </template>
 
@@ -24,4 +24,7 @@ export default defineComponent({
 });
 </script>
 <style lang="less" scoped>
+.portal{
+  height: 100vh;
+}
 </style>

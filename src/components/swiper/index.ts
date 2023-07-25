@@ -3,8 +3,14 @@ import { Swiper, SwiperSlide,useSwiper } from 'swiper/vue';
 import { Autoplay,Navigation } from 'swiper/modules'
 import 'swiper/css'; // Import Swiper styles
 import 'swiper/css/navigation';
+import { watch } from "fs";
 export default defineComponent({
-  props: {},
+  props: {
+    actived:{
+      type:Number,
+      default:0,
+    }
+  },
   components: {
     Swiper,
     SwiperSlide,
@@ -52,9 +58,6 @@ export default defineComponent({
         console.log(swiper);
         mySwiper.value=swiper
       };
-    const snapGridLengthChange== () => {
-        mySwiper.snapGrid = mySwiper.snapGrid.slice(0);
-     };
       const onSlideChange = () => {
         console.log('slide change');
       }; 
@@ -69,9 +72,10 @@ export default defineComponent({
     const clickSlide=(item:any)=>{
         console.log('---clickSlide---',item);
     }
-    const slideTo=()=>{
-        mySwiper.value.slideTo(2);
+    const slideTo=(index:any)=>{
+        mySwiper.value.slideTo(index);
     }
+
     return {
       ...toRefs(state),
       onSwiper,

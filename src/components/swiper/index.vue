@@ -2,19 +2,23 @@
   <div class="swiper">
     <swiper
     :modules="modules"
-    :slides-per-view="2"
+    slides-per-view="auto"
     :space-between="10"
     :speed="1200"
     direction='vertical'
     :navigation="navigation"
-    :centeredSlides="true"
     @swiper="onSwiper"
     @slideChange="onSlideChange"
     @slideChangeTransitionEnd='slideChangeTransitionEnd'
     @snapGridLengthChange='snapGridLengthChange'
     @click='clickSwiper'
   >
-    <swiper-slide @click="clickSlide(item)" v-for="item in slides" :key="item">{{item.name}}</swiper-slide>
+  <template v-for="(item,index) in slides" :key="item" >
+    <swiper-slide :class="`swiper-slide${index} ${actived===item.index?'actived':''}`" @click="clickSlide(item)" >
+      <div >{{item.name}}</div>
+    </swiper-slide>
+  </template>
+    
   </swiper>
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
