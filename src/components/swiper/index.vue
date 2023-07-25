@@ -23,7 +23,7 @@
   <div class="swiper-button-prev"></div>
   <div class="swiper-button-next"></div>
   </div>
-  <a-button type="primary" @click="slideTo">跳转</a-button>
+ 
 </template>
 <script lang="ts">
 import Index from './index'

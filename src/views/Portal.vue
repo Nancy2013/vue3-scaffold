@@ -1,7 +1,8 @@
 <template>
   <div class="portal">
     <h1>This is an portal page</h1>
-    <FCSwiper :actived='4'/>
+    <FCSwiper :actived='actived'/>
+     <a-button type="primary" @click="slideTo">跳转</a-button>
   </div>
 </template>
 
@@ -14,11 +15,16 @@ export default defineComponent({
     FCSwiper
   },
   setup() {
-    const state = reactive({});
-
+    const state = reactive({
+      actived:0
+    });
     onMounted(() => {});
+     const slideTo=(index:any)=>{
+        state.actived=5
+    }
     return {
       ...toRefs(state),
+      slideTo,
     };
   },
 });

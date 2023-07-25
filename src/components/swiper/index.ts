@@ -1,9 +1,8 @@
-import { defineComponent, reactive,ref, toRefs, onMounted } from "vue";
+import { defineComponent, reactive,ref, toRefs, onMounted,watch } from "vue";
 import { Swiper, SwiperSlide,useSwiper } from 'swiper/vue';
 import { Autoplay,Navigation } from 'swiper/modules'
 import 'swiper/css'; // Import Swiper styles
 import 'swiper/css/navigation';
-import { watch } from "fs";
 export default defineComponent({
   props: {
     actived:{
@@ -15,7 +14,7 @@ export default defineComponent({
     Swiper,
     SwiperSlide,
   },
-  setup() {
+  setup(props,{emit}) {
     const mySwiper=ref();
     const state = reactive({
         slides:[
@@ -72,9 +71,19 @@ export default defineComponent({
     const clickSlide=(item:any)=>{
         console.log('---clickSlide---',item);
     }
+    
     const slideTo=(index:any)=>{
         mySwiper.value.slideTo(index);
     }
+    
+    watch(()=>props.actived,(newVal:any,oldVal:any)=>{
+      const pos=state.slides.findIndex((item:any)=>item.index===newVal);
+      console.log('----watch----',pos);
+      
+      if(pos>-1){
+        mySwiper.value.slideTo(pos);
+      }
+    });
 
     return {
       ...toRefs(state),
