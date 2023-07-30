@@ -1,7 +1,5 @@
 <template>
   <main>
-    <a-button type="primary">Primary Button</a-button>
-    <a-switch v-model:checked="checked" />
     <router-view></router-view>
   </main>
 </template>
@@ -11,9 +9,7 @@ import { onMounted } from 'vue'
 import service from '@/service'
 import { ref } from 'vue';
 const checked = ref<boolean>(false);
-onMounted(()=>{
-  getAddressTree();
-});
+onMounted(()=>{});
 const getAddressTree=()=>{
   const {getAddressTree}=service.securityAlarmReq;
   getAddressTree().then((res:any)=>{

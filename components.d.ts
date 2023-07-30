@@ -8,7 +8,10 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
+    ACascader: typeof import('ant-design-vue/es')['Cascader']
+    ARangePicker: typeof import('ant-design-vue/es')['RangePicker']
     ASwitch: typeof import('ant-design-vue/es')['Switch']
+    Base: typeof import('./src/components/base/index.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
     IconDocumentation: typeof import('./src/components/icons/IconDocumentation.vue')['default']
