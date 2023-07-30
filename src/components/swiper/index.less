@@ -3,7 +3,8 @@
     width: 250px;
     position: relative;
     :deep(.swiper-slide){
-        width: 250px;  
+        width: 250px; 
+        height: 250px !important; 
         display:  flex;
         align-items: center;
         justify-content: center;
@@ -12,21 +13,6 @@
     .actived{
         border:1px solid #000;
     }
-    .swiper-slide0{
-        height: 100px;
-    }
-    .swiper-slide1{
-        height: 100px;
-    }
-    .swiper-slide2{
-        height: 100px;
-    }
-    .swiper-slide3{
-        height: 300px;
-    }
-    .swiper-slide4,.swiper-slide5,.swiper-slide6{
-        height: 400px;
-    }
     .swiper-button-prev, .swiper-button-next{
         left: 50%;
         margin: 0;
@@ -34,7 +20,6 @@
     .swiper-button-prev{
         top:0;
         transform: translate(-50%,0) rotate(90deg);
-        // rotate(90deg)
     }
     .swiper-button-next{
         top:100%;

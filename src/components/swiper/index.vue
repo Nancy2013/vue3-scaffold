@@ -10,11 +10,10 @@
     @swiper="onSwiper"
     @slideChange="onSlideChange"
     @slideChangeTransitionEnd='slideChangeTransitionEnd'
-    @snapGridLengthChange='snapGridLengthChange'
     @click='clickSwiper'
   >
   <template v-for="(item,index) in slides" :key="item" >
-    <swiper-slide :class="`swiper-slide${index} ${actived===item.index?'actived':''}`" @click="clickSlide(item)" >
+    <swiper-slide :class="`swiper-slide${index} ${actived===index?'actived':''}`" @click="clickSlide(item)" >
       <div >{{item.name}}</div>
     </swiper-slide>
   </template>

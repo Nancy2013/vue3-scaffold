@@ -57,12 +57,12 @@ export default defineComponent({
         console.log(swiper);
         mySwiper.value=swiper
       };
-      const onSlideChange = () => {
-        console.log('slide change');
-      }; 
+    const onSlideChange = (swiper:any) => {
+      console.log('slide change');
+    }; 
     const slideChangeTransitionEnd=(swiper:any)=>{
         console.log('-----slideChangeTransitionEnd---',swiper);
-        
+        emit('slideChange',swiper);
     }
     const clickSwiper=(swiper:any)=>{
         const {clickedIndex}=swiper
@@ -77,12 +77,7 @@ export default defineComponent({
     }
     
     watch(()=>props.actived,(newVal:any,oldVal:any)=>{
-      const pos=state.slides.findIndex((item:any)=>item.index===newVal);
-      console.log('----watch----',pos);
-      
-      if(pos>-1){
-        mySwiper.value.slideTo(pos);
-      }
+      mySwiper.value.slideTo(newVal);
     });
 
     return {

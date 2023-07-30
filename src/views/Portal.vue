@@ -1,7 +1,7 @@
 <template>
   <div class="portal">
     <h1>This is an portal page</h1>
-    <FCSwiper :actived='actived'/>
+    <FCSwiper :actived='actived' @slideChange='slideChange'/>
      <a-button type="primary" @click="slideTo">跳转</a-button>
   </div>
 </template>
@@ -22,9 +22,17 @@ export default defineComponent({
      const slideTo=(index:any)=>{
         state.actived=5
     }
+
+    const slideChange=(swiper:any)=>{
+      const {activeIndex}=swiper;
+      console.log('---slideChange---',activeIndex);
+      
+      state.actived=activeIndex;
+    }
     return {
       ...toRefs(state),
       slideTo,
+      slideChange,
     };
   },
 });
