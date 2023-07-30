@@ -11,6 +11,7 @@ declare module 'vue' {
     ACascader: typeof import('ant-design-vue/es')['Cascader']
     ARangePicker: typeof import('ant-design-vue/es')['RangePicker']
     ASwitch: typeof import('ant-design-vue/es')['Switch']
+    AUpload: typeof import('ant-design-vue/es')['Upload']
     Base: typeof import('./src/components/base/index.vue')['default']
     HelloWorld: typeof import('./src/components/HelloWorld.vue')['default']
     IconCommunity: typeof import('./src/components/icons/IconCommunity.vue')['default']
