@@ -61,9 +61,7 @@ export default defineComponent({
     };
 
     const handleExport=()=>{
-      
       const {columns}=state;
-      console.log('---handleExport---',columns); 
       const header={} as any;
       columns.forEach((item:any)=>{
         const {key,title}=item;

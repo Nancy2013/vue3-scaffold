@@ -46,10 +46,13 @@ export const usePage = (opts: any) => {
 
   const exportDataFront=(header:any)=>{
     const fileName=route.meta.title||filename;
+    console.log('---exportDataFront---',state.dataSource);
+    
     const opts={
       data:JSON.parse(JSON.stringify(state.dataSource)),
       filename:fileName,
       header,
+      titles:[fileName,'13500000002']
     };
     exportToExcel(opts);
   }

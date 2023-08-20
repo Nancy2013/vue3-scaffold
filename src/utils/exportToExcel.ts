@@ -11,7 +11,7 @@ const baseConfig = {
  * 数据导出
  * @param param0 配置项，data:数据，header:表格头,filename:文件名称
  */
-const exportToExcel = ({ data, header, filename }: any) => {
+const exportToExcel = ({ data, header, filename,titles }: any) => {
   data.forEach((item: any) => {
     for (let i in item) {
       if (header.hasOwnProperty(i)) {
@@ -23,14 +23,26 @@ const exportToExcel = ({ data, header, filename }: any) => {
 
   let sheetName = filename; //excel的文件名称
   let wb = XLSX.utils.book_new(); //工作簿对象包含一SheetNames数组，以及一个表对象映射表名称到表对象。XLSX.utils.book_new实用函数创建一个新的工作簿对象。
-  let ws = XLSX.utils.json_to_sheet(data, { header: Object.values(header) }); //将JS对象数组转换为工作表。
-  const newData=jsonToArray(Object.values(header),data);
-  setAutoWidth(newData,ws); // 设置列宽度自适应
+  const newData=formatData(titles,header,data);
+  let ws = XLSX.utils.json_to_sheet(newData, {skipHeader:true }); //将JS对象数组转换为工作表。
+//   let ws = XLSX.utils.json_to_sheet([header,...data], { header: Object.values(header),skipHeader:true }); 
+//   const newData=jsonToArray(Object.values(header),data);
+//   setAutoWidth(newData,ws); // 设置列宽度自适应
+  setFixedWidth(header,ws); // 设置列宽
+  setTableMerges(titles,header,ws);
   wb.SheetNames.push(sheetName);
   wb.Sheets[sheetName] = ws;
   const defaultCellStyle = {
-    font: { name: "Verdana", sz: 13, color: "FF00FF88" },
+    font: { name: "Verdana", sz: 14, color: "FF0000" },
     fill: { fgColor: { rgb: "FFFFAA00" } },
+    alignment: {
+        /// 自动换行
+        wrapText: true,
+        // 居中
+        horizontal: "center",
+        vertical: "center",
+        indent: 0
+      }
   }; //设置表格的样式
   let wopts = {
     bookSST: false,
@@ -110,6 +122,90 @@ const s2ab = (s: any) => {
     for (let i = 0; i != s.length; ++i) buf[i] = s.charCodeAt(i) & 0xff;
     return buf;
   }
+};
+
+/**
+ * 设置固定列宽
+ * @param ws 
+ */
+const setFixedWidth=(header:any,ws:any)=>{
+    if(header){
+        const keys=Object.keys(header);
+        const cols=[] as any;
+        keys.forEach((key:any)=>{
+            cols.push({wpx:200}); // 像素宽 wpx：200，字符宽 wch: 50
+        })
+        ws['!cols']=cols;
+    }
+}
+
+const formatData=(titles:any,header:any,data:any)=>{
+    const tableTitels=setTableTitle(titles,header);
+    // 处理表格头
+    const keys=Object.keys(header);
+    keys.forEach((key:any)=>{
+        const label=header[`${key}`]
+        header[`${label}`]=label;
+        delete header[`${key}`]
+    });
+    const newData=[...tableTitels,header,...data]
+    console.log('---formatData----',newData);
+    return newData;
+}
+
+
+/**
+ * 设置表格标题
+ * @param titles 标题
+ * @param header 表格头
+ * @param ws 表格
+ */
+const setTableTitle=(titles:any,header:any)=>{
+    const keys=Object.keys(header);
+    const tableTitels=[] as any;
+    if(titles){
+        if(Array.isArray(titles)){
+            titles.forEach((item:any)=>{
+                const title={} as any;
+                keys.forEach((key:any,$index)=>{
+                    const label=header[`${key}`]
+                    title[`${label}`]='';
+                    if($index===0){
+                        title[`${label}`]=item;
+                    }
+                    
+                })
+                tableTitels.push(title);
+            });
+        }
+    }
+    console.log('---setTableTitle----',tableTitels);
+    return tableTitels;
+}
+
+/**
+ * 设置标题合并
+ * @param header 表头
+ * @param ws 表格
+ */
+const setTableMerges=(titles:any,header:any,ws:any)=>{
+    const cols=Object.keys(header).length;
+    const merges=[] as any;
+    if(titles){
+        if(Array.isArray(titles)){
+            titles.forEach((item:any,$index:any)=>{
+                merges.push(
+                    {
+                        s:{c:0,r:$index},
+                        e: { c: cols-1, r: $index }, 
+                    }
+                );
+            });
+        }
+    }
+    console.log('----setTableMerges----',merges);
+    
+    ws['!merges'] = merges;
 };
 
 export default exportToExcel;
