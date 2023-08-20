@@ -213,7 +213,6 @@ const setTableMerges=(titles:any,header:any,ws:any)=>{
 
 const setCellStyle=(ws:any)=>{
     for (const key in ws) {
-        console.log('-----setCellStyle----',key);
         // 所有单元格居中
       if (key.indexOf("!") === -1 && ws[key].v) {
         ws[key].s = {
