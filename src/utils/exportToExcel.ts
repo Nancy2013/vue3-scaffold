@@ -11,7 +11,7 @@ const baseConfig = {
  * 数据导出
  * @param param0 配置项，data:数据，header:表格头,filename:文件名称
  */
-const exportToExcel = ({ data, header, filename,titles }: any) => {
+const exportToExcel = ({ data, header, filename,titles,autoWidth }: any) => {
   data.forEach((item: any) => {
     for (let i in item) {
       if (header.hasOwnProperty(i)) {
@@ -25,11 +25,16 @@ const exportToExcel = ({ data, header, filename,titles }: any) => {
   let wb = XLSX.utils.book_new(); //工作簿对象包含一SheetNames数组，以及一个表对象映射表名称到表对象。XLSX.utils.book_new实用函数创建一个新的工作簿对象。
   const newData=formatData(titles,header,data);
   let ws = XLSX.utils.json_to_sheet(newData, {skipHeader:true }); //将JS对象数组转换为工作表。
-//   let ws = XLSX.utils.json_to_sheet([header,...data], { header: Object.values(header),skipHeader:true }); 
-//   const newData=jsonToArray(Object.values(header),data);
-//   setAutoWidth(newData,ws); // 设置列宽度自适应
-  setFixedWidth(header,ws); // 设置列宽
-  setTableMerges(titles,header,ws);
+
+  if(autoWidth){
+    const newData=jsonToArray(Object.values(header),data);
+    setAutoWidth(newData,ws); // 设置列宽度自适应
+  }else{
+    setFixedWidth(header,ws); // 设置固定列宽
+  }  
+  
+  setTableMerges(titles,header,ws); // 表格合并
+  setCellStyle(ws); // 设置样式
   wb.SheetNames.push(sheetName);
   wb.Sheets[sheetName] = ws;
   const defaultCellStyle = {
@@ -202,10 +207,26 @@ const setTableMerges=(titles:any,header:any,ws:any)=>{
                 );
             });
         }
-    }
-    console.log('----setTableMerges----',merges);
-    
+    }    
     ws['!merges'] = merges;
+};
+
+const setCellStyle=(ws:any)=>{
+    for (const key in ws) {
+        console.log('-----setCellStyle----',key);
+        // 所有单元格居中
+      if (key.indexOf("!") === -1 && ws[key].v) {
+        ws[key].s = {
+          font: { name: "Verdana", sz: 14, color: "FF0000" },
+          alignment: {
+             wrapText: true, // 自动换行
+             horizontal: "center", // 居中
+             vertical: "center",
+             indent: 0
+          }
+        }
+      }
+    }
 };
 
 export default exportToExcel;
