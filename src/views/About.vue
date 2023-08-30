@@ -1,13 +1,20 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <a-upload
-      v-model:file-list="fileList"
-      action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-      :before-upload="beforeUpload"
-    >
-      <a-button> 导入 </a-button>
-    </a-upload>
+    <a-button type="primary"
+              @click="showModal">Primary Button</a-button>
+    <a-modal v-model:visible="visible"
+             :title="title"
+             :footer="null"
+             :maskClosable="false"
+             wrapClassName="pony-modal-wrapper"
+             :afterClose="handleClose"
+             centered
+             :width="1000">
+      <div class='form-table'>
+        <CodePanel v-if='visible'
+                   @update='update' />
+      </div>
+    </a-modal>
   </div>
 </template>
 <script lang="ts">
@@ -19,23 +26,40 @@ import {
   onMounted,
   computed,
 } from "vue";
-import importToJson from '@/utils/importToJson';
+import CodePanel from "./components/codePanel/index.vue";
 export default defineComponent({
   props: {},
-  components: {},
+  components: {
+    CodePanel,
+  },
   setup() {
     const state = reactive({
-      fileList: [],
+      visible: false,
+      title: "测试",
+      codeAuthorizeList: [],
     });
     onMounted(() => {});
 
-    const beforeUpload = async (file: any) => {
-      const data = await importToJson(file);
-      return false;
+    const showModal = () => {
+      state.visible = true;
+    };
+
+    const update = (data: any) => {
+      state.codeAuthorizeList = Object.assign([], data);
+      console.log("------update---------", state.codeAuthorizeList);
+    };
+
+    /**
+     * 关闭弹窗
+     */
+    const handleClose = () => {
+      state.codeAuthorizeList = [];
     };
     return {
       ...toRefs(state),
-      beforeUpload,
+      handleClose,
+      showModal,
+      update,
     };
   },
 });
